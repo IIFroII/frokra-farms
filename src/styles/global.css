@@ -1,1 +1,212 @@
 @import "tailwindcss";
+
+:root {
+  --farm-green: #173f2a;
+  --leaf-green: #2f6f45;
+  --fresh-green: #76a85b;
+  --okra: #b8cf78;
+  --cream: #f6f0df;
+  --paper: #fffdf7;
+  --earth: #9b5f3f;
+  --ink: #17231b;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--cream);
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  color: var(--ink);
+  background: var(--cream);
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  color: white;
+  background: var(--leaf-green);
+}
+
+.font-display {
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.paper-noise {
+  background-image:
+    radial-gradient(circle at 15% 20%, rgb(23 63 42 / 7%) 0 1px, transparent 1px),
+    radial-gradient(circle at 80% 30%, rgb(155 95 63 / 6%) 0 1px, transparent 1px);
+  background-size: 28px 28px, 36px 36px;
+}
+
+.okra-shadow {
+  filter: drop-shadow(0 24px 28px rgb(23 63 42 / 18%));
+}
+
+@keyframes mascot-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(46px) scale(0.92) rotate(-2deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(0);
+  }
+}
+
+@keyframes mascot-idle {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-0.4deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(0.4deg);
+  }
+}
+
+@keyframes hair-rustle {
+  0%,
+  100% {
+    transform: rotate(-0.35deg) translateY(0);
+  }
+  35% {
+    transform: rotate(0.55deg) translateY(-1px);
+  }
+  68% {
+    transform: rotate(-0.15deg) translateY(-2px);
+  }
+}
+
+@keyframes arm-left-drift {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  50% {
+    transform: rotate(-0.7deg) translateY(-2px);
+  }
+}
+
+@keyframes arm-right-drift {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  50% {
+    transform: rotate(0.65deg) translateY(-2px);
+  }
+}
+
+@keyframes flower-bloom {
+  0%,
+  18%,
+  100% {
+    filter: brightness(1) drop-shadow(0 0 0 rgb(255 255 255 / 0%));
+    transform: scale(0.96) rotate(-1deg);
+  }
+  45% {
+    filter: brightness(1.14) drop-shadow(0 0 8px rgb(255 248 190 / 72%));
+    transform: scale(1.075) rotate(1deg);
+  }
+  64% {
+    filter: brightness(1.04) drop-shadow(0 0 4px rgb(255 248 190 / 40%));
+    transform: scale(1.02) rotate(0);
+  }
+}
+
+.mascot-reveal {
+  transform-origin: 50% 90%;
+  animation: mascot-reveal 900ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.mascot-idle {
+  transform-origin: 50% 85%;
+  animation: mascot-idle 5.5s 1s ease-in-out infinite;
+}
+
+.mascot-rig {
+  isolation: isolate;
+}
+
+.mascot-layer {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  height: auto;
+  width: 100%;
+  will-change: transform;
+}
+
+.mascot-hair {
+  clip-path: polygon(32% 9%, 68% 9%, 69% 37%, 63% 45%, 56% 41%, 50% 48%, 43% 42%, 34% 45%, 30% 32%);
+  transform-origin: 50% 43%;
+  animation: hair-rustle 3.8s 1.2s ease-in-out infinite;
+}
+
+.mascot-arm-left {
+  clip-path: polygon(0 3%, 34% 3%, 34% 35%, 42% 49%, 44% 67%, 37% 75%, 15% 70%, 8% 53%, 0 48%);
+  transform-origin: 39% 58%;
+  animation: arm-left-drift 5.2s 1.4s ease-in-out infinite;
+}
+
+.mascot-arm-right {
+  clip-path: polygon(66% 3%, 100% 3%, 100% 48%, 92% 53%, 85% 70%, 63% 75%, 56% 67%, 58% 49%, 66% 35%);
+  transform-origin: 61% 58%;
+  animation: arm-right-drift 5.2s 1.4s ease-in-out infinite;
+}
+
+.mascot-flower {
+  z-index: 3;
+  animation: flower-bloom 5.6s 1.8s ease-in-out infinite;
+}
+
+.mascot-flower-left {
+  clip-path: circle(4.7% at 12.6% 30.7%);
+  transform-origin: 12.6% 30.7%;
+}
+
+.mascot-flower-right {
+  clip-path: circle(4.7% at 91.1% 31.7%);
+  transform-origin: 91.1% 31.7%;
+  animation-delay: 2.35s;
+}
+
+.mascot-name-label {
+  position: absolute;
+  left: 53%;
+  top: 77%;
+  z-index: 4;
+  min-width: 3.6em;
+  transform: translate(-50%, -50%) rotate(1.25deg);
+  border: 2px solid #173f2a;
+  border-radius: 0.3rem;
+  background: #f6f0df;
+  box-shadow:
+    inset 0 0 0 2px rgb(155 95 63 / 18%),
+    0 2px 0 rgb(23 63 42 / 35%);
+  color: #173f2a;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(0.65rem, 1.45vw, 1.1rem);
+  font-style: italic;
+  font-weight: 800;
+  line-height: 1;
+  padding: 0.28em 0.65em 0.34em;
+  text-align: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .mascot-reveal,
+  .mascot-idle,
+  .mascot-layer {
+    animation: none;
+  }
+}
